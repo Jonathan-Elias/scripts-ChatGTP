@@ -33,3 +33,9 @@ for ip in tqdm(ips, desc='Testando conexão FTP', unit='ip'):
     except ftplib.all_errors:
         # exibe uma mensagem de erro
         tqdm.write(f'Credenciais inválidas para: {ip}')
+        
+        #Como gerar wordlist com ip's do FTP
+        #inserir API do shodan: shodan init API_KEY
+        #shodan download --limit 1000 ftp.json.gz ftp "Anonymous access granted"
+        #shodan parse ftp.json.gz > list-ftp.txt
+        #cat list-ftp.txt |cut -d " " -f 1
