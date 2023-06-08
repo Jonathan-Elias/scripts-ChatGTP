@@ -11,20 +11,20 @@ def directory_scan(url, wordlist):
     processed_paths = 0
 
     for path in paths:
-        target_url = f"{url}/{path}"
+        target_url = f"{url}{path}"
         response = requests.get(target_url)
-        sys.stdout.write(f"\rTestando: {target_url}")
+        sys.stdout.write(f"\rTestando: {target_url}")  # Atualiza a linha atual da tela com a URL atual
         sys.stdout.flush()
 
         if response.status_code == 200:
             result.append(target_url)
-
+        
         processed_paths += 1
         progress = processed_paths / total_paths * 100
-        sys.stdout.write(f"\r\nProgresso: [{progress:.2f}%]")  # Adiciona uma linha em branco antes de exibir o progresso
+        sys.stdout.write(f"\rProgresso: [{progress:.2f}%]")  # Atualiza a linha atual da tela com o progresso atual
         sys.stdout.flush()
 
-    sys.stdout.write("\n")
+    sys.stdout.write("\n")  # Move para uma nova linha após o teste ser concluído
     return result
 
 def save_to_json(result, filename):
