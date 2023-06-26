@@ -2,20 +2,32 @@ import subprocess
 
 scripts = {
     1: {
-        'name': 'Brute-Force',
-        'command': ['python', 'bruteforce.py']
+        'name': 'Brute Force WEB',
+        'command': ['python', 'bruteforceweb.py']
     },
     2: {
-        'name': 'Métodos-aceitos',
+        'name': 'Métodos aceitos',
         'command': ['python', 'metodos-aceitos.py']
     },
     3: {
-        'name': 'Compartilhamento-SMBv1',
+        'name': 'Compartilhamento SMBv1',
         'command': ['python', 'smbv1.py']
     },
     4: {
-        'name': 'Compartilhamento-SMBv1-Rede',
+        'name': 'Compartilhamento SMBv1 Rede',
         'command': ['python', 'smbv1rede.py']
+    },
+    5: {
+        'name': 'Brute force sub pastas (OBS: Depende do script N 1 para executar!)',
+        'command': ['python', 'BruteForceWebDir.py']
+    },
+    6: {
+        'name': 'Fazer Parse dos FTPs no Shodan',
+        'command': ['bash', 'shodan_ftp_automation.sh']
+    },
+    7: {
+        'name': 'Testar as conexões FTPs (OBS: Depende do script N 6 para executar!)',
+        'command': ['python', 'ftp-anon.py']
     },
     # Adicione mais scripts conforme necessário
 }
@@ -23,6 +35,7 @@ scripts = {
 def execute_script(script):
     subprocess.run(script['command'])
 
+print("")
 def print_scripts():
     print("Selecione o script a ser executado:")
     for num, script in scripts.items():
@@ -52,6 +65,7 @@ def main():
         else:
             print("Script inválido.")
         
+        print("")
         response = input("Deseja executar outro script? (s/n): ")
         if response.lower() != 's':
             break
